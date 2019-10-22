@@ -1,3 +1,5 @@
+/// Made by Charles John Summers, 2019
+
 #include <iostream>
 #include "Game.h"
 

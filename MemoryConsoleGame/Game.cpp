@@ -2,9 +2,22 @@
 
 
 
+void Game::finishGame()
+{
+	_isGameRunning = false;
+	_isGameFinished = true;
+}
+
+void Game::showEndingScreen()
+{
+	cout << "You finished the game!" << endl;
+	system("pause");
+}
+
 Game::Game()
 {
 	_isGameRunning = true;
+	_isGameFinished = false;
 	ShowMenu();
 }
 
@@ -76,13 +89,30 @@ bool Game::QuitPrompt()
 
 void Game::Run()
 {
-	pair<char, int> * revealedCardAddress;
+	pair<char, int> * cardAddressToReveal;
 	while (_isGameRunning)
 	{
 		_board->Show();
-		revealedCardAddress = _board->GetAddress();
-		_board->RevealCard(revealedCardAddress);
+		cardAddressToReveal = _board->GetAddress();
+		_board->RevealCard(cardAddressToReveal);
+		if (_board->CardsRevealed() < 2)
+			continue;
+		if (_board->CardsRevealed() == 2 && _board->RevealedCardsMatch())
+		{
+			_board->AddToProgress();
+			_board->ShowWithPause();
+			_board->RemoveRevealedCards();
+		}
+		else
+		{
+			_board->ShowWithPause();
+			_board->HideRevealedCards();
+		}
+		if (_board->AllCardsAreRemoved())
+			finishGame();
 	}
+	if (_isGameFinished)
+		showEndingScreen();
 }
 
 Game::~Game()

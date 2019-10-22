@@ -6,7 +6,7 @@ Card::Card(string content)
 {
 	_content = content;
 	_isRevealed = false;
-	_address = "a1";			// Address management
+	_isOutOfTheGame = false;
 }
 
 string Card::Show()
@@ -15,6 +15,11 @@ string Card::Show()
 		return _content;
 	else
 		return "XXXXXXX";
+}
+
+string Card::Content()
+{
+	return _content;
 }
 
 void Card::Reveal()
@@ -30,6 +35,16 @@ void Card::Hide()
 bool Card::IsRevealed()
 {
 	return _isRevealed;
+}
+
+bool Card::IsOutOfTheGame()
+{
+	return _isOutOfTheGame;
+}
+
+void Card::RemoveFromTheGame()
+{
+	_isOutOfTheGame = true;
 }
 
 
