@@ -1,1 +1,1 @@
-Elephant Giraffe Lion Snake Frog Dog Cat Mouse Rat Turtle Spider Goat Cow Pig Tiger Zebra
+Elephant Giraffe Lion Snake Frog Dog Cat Mouse Rat Turtle Spider Goat Cow Pig Tiger Zebra 2048 4096 8192 1024 512 16384 32768 65536 131072 262144 256 128 64 32 16 8 4 2 1 

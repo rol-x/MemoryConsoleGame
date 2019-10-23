@@ -21,7 +21,7 @@ void Board::loadCardsFromFile() // File doesn't exist exception
 		}
 		if (areDoubles(initialCardsVector))
 			throw DoubledCardException();
-		
+
 		for (int i = 0; i < _boardSize; i++)
 		{
 			vector<Card*> _row;
@@ -50,7 +50,16 @@ bool Board::areDoubles(vector<Card*> cards)
 
 void Board::shuffleVector(vector<Card*>& cards)
 {
-	// TODO
+	vector<Card*> shuffledVector;
+	int randomIndex;
+	int cardsCount = cards.size();
+	for (int i = 0; i < cardsCount; i++)
+	{
+		randomIndex = rand() % cards.size();
+		shuffledVector.push_back(cards[randomIndex]);
+		cards.erase(cards.begin() + randomIndex);
+	}
+	cards = shuffledVector;
 }
 
 void Board::showProgress()

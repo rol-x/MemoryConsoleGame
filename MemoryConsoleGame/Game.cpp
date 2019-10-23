@@ -16,6 +16,7 @@ void Game::showEndingScreen()
 
 Game::Game()
 {
+	srand(time(0));
 	_isGameRunning = true;
 	_isGameFinished = false;
 	ShowMenu();
@@ -39,12 +40,12 @@ void Game::ShowMenu()
 				break;
 			case 'M':
 			case 'm':
-				_board = new Board(5);
+				_board = new Board(6);
 				showMenu = false;
 				break;
 			case 'H':
 			case 'h':
-				_board = new Board(6);
+				_board = new Board(8);
 				showMenu = false;
 				break;
 			case 'Q':

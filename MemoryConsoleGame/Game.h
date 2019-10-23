@@ -1,5 +1,6 @@
 #pragma once
 #include "Board.h"
+#include <ctime>
 #include <conio.h>
 
 class Game
