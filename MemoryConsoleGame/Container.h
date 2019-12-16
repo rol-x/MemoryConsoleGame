@@ -6,7 +6,7 @@ using namespace std;
 
 class Container
 {
-	int _hSize = 15;
+	int _hSize = 12;
 public:
 	string Display(string content);
 	Container();

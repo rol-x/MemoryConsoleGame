@@ -4,11 +4,11 @@
 #include <vector>
 #include <fstream>
 #include <utility>
-#include <windows.h>
 #include <ctime>
 #include <conio.h>
 #include <thread>
 #include "Card.h"
+#include "Console.h"
 #include "FileTooSmallException.h"
 #include "DoubledCardException.h"
 #include "FileLoadingException.h"
@@ -18,13 +18,14 @@ using namespace std;
 class Board
 {
 private:
+	Console _console;
 	time_t _startTime;
 	vector<vector<Card*>> _cards;
 	int _boardSize;
+	int _progress;
 	void loadCardsFromFile();
 	bool areDoubles(vector<Card*> cards);
 	void shuffleVector(vector<Card*>& cards);
-	int _progress;
 	void showProgress();
 	void showClock();
 public:
@@ -35,11 +36,11 @@ public:
 	Card * CardAtAddress(pair<char, int> * address);
 	void RevealCard(pair<char, int> * address);
 	int CardsRevealed();
-	bool RevealedCardsMatch();
+	bool DoRevealedCardsMatch();
 	void AddToProgress();
 	void RemoveRevealedCards();
 	void HideRevealedCards();
-	bool AllCardsAreRemoved();
+	bool AreAllCardsRemoved();
 	~Board();
 };
 

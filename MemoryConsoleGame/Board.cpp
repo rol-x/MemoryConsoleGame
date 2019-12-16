@@ -1,6 +1,5 @@
 #include "Board.h"
 
-
 void Board::loadCardsFromFile() // File doesn't exist exception
 {
 	fstream cardsFile;
@@ -89,10 +88,10 @@ Board::Board(int boardSize)
 	_progress = 0;
 }
 
-void Board::Show() //TODO (Container)
+void Board::Show()
 {
 	system("cls");
-
+	_console.RemoveScrollbar();
 	for (char columnIndex = 'a'; columnIndex - 97 < _boardSize; columnIndex++)
 		cout << "\t" << columnIndex << "\t\t";
 	cout << endl << endl;
@@ -127,7 +126,10 @@ pair<char, int> * Board::GetAddress()
 	pair<char, int> * addressPair;
 	if (address.length() != 2)
 	{
+		_console.ShiftCursor(0, -3);
 		cout << "\t\t\t\t\t\t\tImproper address format!" << endl;
+		_console.ClearCurrentLine();
+		cout << "\t\t\t\t\t\t\t";
 		return nullptr;
 	}
 	
@@ -149,7 +151,10 @@ pair<char, int> * Board::GetAddress()
 		}
 		else
 		{
+			_console.ShiftCursor(0, -3);
 			cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
+			_console.ClearCurrentLine();
+			cout << "\t\t\t\t\t\t\t";
 			return nullptr;
 		}
 	}
@@ -167,13 +172,19 @@ pair<char, int> * Board::GetAddress()
 		}
 		else
 		{
+			_console.ShiftCursor(0, -3);
 			cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
+			_console.ClearCurrentLine();
+			cout << "\t\t\t\t\t\t\t";
 			return nullptr;
 		}
 	}
 	else
 	{
+		_console.ShiftCursor(0, -3);
 		cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
+		_console.ClearCurrentLine();
+		cout << "\t\t\t\t\t\t\t";
 		return nullptr;
 	}
 	return addressPair;
@@ -204,10 +215,7 @@ Card * Board::CardAtAddress(pair<char, int> * address)
 void Board::RevealCard(pair<char, int>* address)
 {
 	if (address == nullptr)
-	{
-		cout << "\n\n\n\n\n";
 		system("pause");
-	}
 	else if (!CardAtAddress(address)->IsRevealed())
 		CardAtAddress(address)->Reveal();
 }
@@ -222,7 +230,7 @@ int Board::CardsRevealed()
 	return cardsRevealed;
 }
 
-bool Board::RevealedCardsMatch()
+bool Board::DoRevealedCardsMatch()
 {
 	vector<Card*> revealedCards;
 	for (auto &cardRow : _cards)
@@ -262,7 +270,7 @@ void Board::HideRevealedCards()
 	revealedCards[1]->Hide();
 }
 
-bool Board::AllCardsAreRemoved()
+bool Board::AreAllCardsRemoved()
 {
 	for (auto cardRow : _cards)
 		for (auto card : cardRow)

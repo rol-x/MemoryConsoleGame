@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="DoubledCardException.cpp" />
     <ClCompile Include="FileLoadingException.cpp" />
@@ -127,6 +128,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Console.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="DoubledCardException.h" />
     <ClInclude Include="FileLoadingException.h" />

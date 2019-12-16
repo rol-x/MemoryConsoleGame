@@ -1,7 +1,5 @@
 #include "Card.h"
 
-
-
 Card::Card(string content)
 {
 	_content = content;
@@ -14,7 +12,12 @@ string Card::Show()
 	if (_isRevealed)
 		return Display(_content);
 	else
-		return Display("XXXXXXXXXXXXXXX");
+	{
+		string hidden = "";
+		for (int i = 0; i < 12; i++)
+			hidden += static_cast<char>(219);
+		return Display(hidden);
+	}
 }
 
 string Card::Content()

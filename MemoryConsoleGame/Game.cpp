@@ -1,7 +1,5 @@
 #include "Game.h"
 
-
-
 void Game::finishGame()
 {
 	_isGameRunning = false;
@@ -17,6 +15,7 @@ void Game::showEndingScreen()
 Game::Game()
 {
 	srand(time(0));
+	Console().RemoveScrollbar();
 	_isGameRunning = true;
 	_isGameFinished = false;
 	ShowMenu();
@@ -30,22 +29,26 @@ void Game::ShowMenu()
 		while (showMenu)
 		{
 			system("cls");
-			cout << "\n\t\t\t\t\tWelcome to Memory Game - Console Version!\n\nChoose the level of difficulty:\n[E] Easy\n[M] Medium\n[H] Hard\n\n[Q] Quit\n";
+			cout << endl;
+			cout << "Welcome to Memory Game - Console Version!\n\nChoose the level of difficulty:\n[E] Easy\n[M] Medium\n[H] Hard\n\n[Q] Quit\n";
 			switch (_getch())
 			{
 			case 'E':
 			case 'e':
 				_board = new Board(4);
+				_console.SetConsoleSize(GAMEMODE::EASY);
 				showMenu = false;
 				break;
 			case 'M':
 			case 'm':
 				_board = new Board(6);
+				_console.SetConsoleSize(GAMEMODE::MEDIUM);
 				showMenu = false;
 				break;
 			case 'H':
 			case 'h':
 				_board = new Board(8);
+				_console.SetConsoleSize(GAMEMODE::HARD);
 				showMenu = false;
 				break;
 			case 'Q':
@@ -98,7 +101,7 @@ void Game::Run()
 		_board->RevealCard(cardAddressToReveal);
 		if (_board->CardsRevealed() < 2)
 			continue;
-		if (_board->CardsRevealed() == 2 && _board->RevealedCardsMatch())
+		if (_board->CardsRevealed() == 2 && _board->DoRevealedCardsMatch())
 		{
 			_board->AddToProgress();
 			_board->ShowWithPause();
@@ -109,7 +112,7 @@ void Game::Run()
 			_board->ShowWithPause();
 			_board->HideRevealedCards();
 		}
-		if (_board->AllCardsAreRemoved())
+		if (_board->AreAllCardsRemoved())
 			finishGame();
 	}
 	if (_isGameFinished)
