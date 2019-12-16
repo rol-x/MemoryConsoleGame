@@ -4,7 +4,10 @@
 #include <vector>
 #include <fstream>
 #include <utility>
-#include <Windows.h>
+#include <windows.h>
+#include <ctime>
+#include <conio.h>
+#include <thread>
 #include "Card.h"
 #include "FileTooSmallException.h"
 #include "DoubledCardException.h"
@@ -15,6 +18,7 @@ using namespace std;
 class Board
 {
 private:
+	time_t _startTime;
 	vector<vector<Card*>> _cards;
 	int _boardSize;
 	void loadCardsFromFile();
@@ -22,6 +26,7 @@ private:
 	void shuffleVector(vector<Card*>& cards);
 	int _progress;
 	void showProgress();
+	void showClock();
 public:
 	Board(int boardSize);
 	void Show();

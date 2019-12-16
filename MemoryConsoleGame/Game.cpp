@@ -94,7 +94,7 @@ void Game::Run()
 	while (_isGameRunning)
 	{
 		_board->Show();
-		cardAddressToReveal = _board->GetAddress();
+		cardAddressToReveal = _board->GetAddress(); // redone
 		_board->RevealCard(cardAddressToReveal);
 		if (_board->CardsRevealed() < 2)
 			continue;

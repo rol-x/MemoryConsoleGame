@@ -1,5 +1,7 @@
 /// Made by Charles John Summers, 2019
 
+int hSize = 10;
+
 #include <iostream>
 #include "Game.h"
 

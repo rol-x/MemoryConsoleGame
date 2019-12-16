@@ -1,7 +1,6 @@
 #include "Board.h"
 
 
-
 void Board::loadCardsFromFile() // File doesn't exist exception
 {
 	fstream cardsFile;
@@ -67,8 +66,17 @@ void Board::showProgress()
 	cout << _progress << "/" << _boardSize * _boardSize / 2 << " pairs found" << endl;
 }
 
+void Board::showClock()
+{
+	time_t runTime = (clock() - _startTime) / CLOCKS_PER_SEC;
+	int minutes = static_cast<int>(runTime) / 60;
+	int seconds = static_cast<int>(runTime) % 60;
+	cout << minutes << "m " << seconds << "s " << endl;
+}
+
 Board::Board(int boardSize)
 {
+	_startTime = clock();
 	_boardSize = boardSize;
 	try
 	{
@@ -81,27 +89,28 @@ Board::Board(int boardSize)
 	_progress = 0;
 }
 
-void Board::Show()
+void Board::Show() //TODO (Container)
 {
 	system("cls");
 
 	for (char columnIndex = 'a'; columnIndex - 97 < _boardSize; columnIndex++)
-		cout << "\t\t" << columnIndex << "\t";
-	cout << endl;
+		cout << "\t" << columnIndex << "\t\t";
+	cout << endl << endl;
 
 	int rowIndex = 1;
 	for (auto cardRow : _cards)
 	{
-		cout << rowIndex++ << "\t\t";
+		cout << rowIndex++ << "\t";
 		for (auto card : cardRow)
 		{
-			cout << card->Show() << "\t\t\t";
+			cout << card->Show() << "\t\t";
 		}
-		cout << endl << endl;
+		cout << endl << endl << endl;
 	}
 
 	cout << endl;
 	showProgress();
+	showClock();
 }
 
 void Board::ShowWithPause()
@@ -121,17 +130,46 @@ pair<char, int> * Board::GetAddress()
 		cout << "\t\t\t\t\t\t\tImproper address format!" << endl;
 		return nullptr;
 	}
-	if (address.at(0) > 48 && address.at(0) <= 48 + _boardSize && address.at(1) > 96 && address.at(1) <= 96 + _boardSize)
+	
+	char first = address.at(0);
+	char second = address.at(1);
+	addressPair = new pair<char, int>();
+	
+	if (second >= '1' && second < '1' + _boardSize)		// digit is second
 	{
-		addressPair = new pair<char, int>();
-		addressPair->first = address.at(1);
-		addressPair->second = address.at(0) - 48;
+		if (first >= 'a' && first < 'a' + _boardSize)		// lowercase letter is first
+		{
+			addressPair->first = first;
+			addressPair->second = second - 48;
+		}
+		else if (first >= 'A' && first < 'A' + _boardSize)	// uppercase letter is first
+		{
+			addressPair->first = first;
+			addressPair->second = second - 48;
+		}
+		else
+		{
+			cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
+			return nullptr;
+		}
 	}
-	else if (address.at(1) > 48 && address.at(1) <= 48 + _boardSize && address.at(0) > 96 && address.at(0) <= 96 + _boardSize)
+	else if (first >= '1' && first < '1' + _boardSize)	// digit is first
 	{
-		addressPair = new pair<char, int>();
-		addressPair->first = address.at(0);
-		addressPair->second = address.at(1) - 48;
+		if (second >= 'a' && second < 'a' + _boardSize)	// lowercase letter is second
+		{
+			addressPair->first = second;
+			addressPair->second = first - 48;
+		}
+		else if (second >= 'A' && second < 'A' + _boardSize)	// uppercase letter is second
+		{
+			addressPair->first = second;
+			addressPair->second = first - 48;
+		}
+		else
+		{
+			cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
+			return nullptr;
+		}
 	}
 	else
 	{
@@ -144,7 +182,11 @@ pair<char, int> * Board::GetAddress()
 Card * Board::CardAtAddress(pair<char, int> * address)
 {
 	int row = address->second - 1;
-	int column = static_cast<int>(address->first - 97);
+	int column = 0;
+	if (address->first >= 'a')
+		column = static_cast<int>(address->first - 97);
+	else
+		column = static_cast<int>(address->first - 65);
 	Card * card;
 	try
 	{

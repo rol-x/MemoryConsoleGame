@@ -1,14 +1,14 @@
 #pragma once
-#include <string>
+#include "Container.h"
 
 using namespace std;
 
-class Card
+class Card : public Container
 {
 private:
+	string _content;
 	bool _isRevealed;
 	bool _isOutOfTheGame;
-	string _content;
 public:
 	Card(string content);
 	string Show();

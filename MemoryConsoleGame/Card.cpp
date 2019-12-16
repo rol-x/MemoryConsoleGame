@@ -12,9 +12,9 @@ Card::Card(string content)
 string Card::Show()
 {
 	if (_isRevealed)
-		return _content;
+		return Display(_content);
 	else
-		return "XXXXXXX";
+		return Display("XXXXXXXXXXXXXXX");
 }
 
 string Card::Content()
@@ -46,7 +46,6 @@ void Card::RemoveFromTheGame()
 {
 	_isOutOfTheGame = true;
 }
-
 
 Card::~Card()
 {

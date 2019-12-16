@@ -1,4 +1,3 @@
-﻿  Game.cpp
-c:\users\charles0\documents\computerprogramming\memorygame\memoryconsolegame\memoryconsolegame\game.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\charles0\documents\computerprogramming\memorygame\memoryconsolegame\memoryconsolegame\game.cpp(89): warning C4715: 'Game::QuitPrompt': not all control paths return a value
+﻿  Board.cpp
+c:\users\charles0\documents\computerprogramming\memorygame\memoryconsolegame\memoryconsolegame\board.cpp(197): warning C4101: 'exc': unreferenced local variable
   MemoryConsoleGame.vcxproj -> C:\Users\charles0\Documents\ComputerProgramming\MemoryGame\MemoryConsoleGame\Debug\MemoryConsoleGame.exe
