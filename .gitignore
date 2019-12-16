@@ -4,6 +4,10 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+<<<<<<< HEAD
+=======
+*.rsuser
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 *.suo
 *.user
 *.userosscache
@@ -12,6 +16,12 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+<<<<<<< HEAD
+=======
+# Mono auto generated files
+mono_crash.*
+
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -19,10 +29,19 @@
 [Rr]eleases/
 x64/
 x86/
+<<<<<<< HEAD
+=======
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+<<<<<<< HEAD
+=======
+[Ll]ogs/
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -36,9 +55,16 @@ Generated\ Files/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+<<<<<<< HEAD
 # NUNIT
 *.VisualState.xml
 TestResult.xml
+=======
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
@@ -52,7 +78,10 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+<<<<<<< HEAD
 **/Properties/launchSettings.json
+=======
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # StyleCop
 StyleCopReport.xml
@@ -60,7 +89,11 @@ StyleCopReport.xml
 # Files built by Visual Studio
 *_i.c
 *_p.c
+<<<<<<< HEAD
 *_i.h
+=======
+*_h.h
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 *.ilk
 *.meta
 *.obj
@@ -77,6 +110,10 @@ StyleCopReport.xml
 *.tlh
 *.tmp
 *.tmp_proj
+<<<<<<< HEAD
+=======
+*_wpftmp.csproj
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 *.log
 *.vspscc
 *.vssscc
@@ -119,9 +156,12 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+<<<<<<< HEAD
 # JustCode is a .NET coding add-in
 .JustCode
 
+=======
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 # TeamCity is a build add-in
 _TeamCity*
 
@@ -132,6 +172,12 @@ _TeamCity*
 .axoCover/*
 !.axoCover/settings.json
 
+<<<<<<< HEAD
+=======
+# Coverlet is a free, cross platform Code Coverage Tool
+coverage*[.json, .xml, .info]
+
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
@@ -179,6 +225,11 @@ PublishScripts/
 
 # NuGet Packages
 *.nupkg
+<<<<<<< HEAD
+=======
+# NuGet Symbol Packages
+*.snupkg
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
@@ -203,12 +254,21 @@ BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
 *.appx
+<<<<<<< HEAD
+=======
+*.appxbundle
+*.appxupload
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
+<<<<<<< HEAD
 !*.[Cc]ache/
+=======
+!?*.[Cc]ache/
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # Others
 ClientBin/
@@ -221,7 +281,11 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
+<<<<<<< HEAD
 # Including strong name files can present a security risk 
+=======
+# Including strong name files can present a security risk
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 # (https://github.com/github/gitignore/pull/2483#issue-259490424)
 #*.snk
 
@@ -252,6 +316,12 @@ ServiceFabricBackup/
 *.bim.layout
 *.bim_*.settings
 *.rptproj.rsuser
+<<<<<<< HEAD
+=======
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # Microsoft Fakes
 FakesAssemblies/
@@ -287,12 +357,17 @@ paket-files/
 # FAKE - F# Make
 .fake/
 
+<<<<<<< HEAD
 # JetBrains Rider
 .idea/
 *.sln.iml
 
 # CodeRush
 .cr/
+=======
+# CodeRush personal settings
+.cr/personal
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
@@ -317,7 +392,11 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 
+<<<<<<< HEAD
 # Azure Stream Analytics local run output 
+=======
+# Azure Stream Analytics local run output
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
 ASALocalRun/
 
 # MSBuild Binary and Structured Log
@@ -326,5 +405,22 @@ ASALocalRun/
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
 
+<<<<<<< HEAD
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+=======
+# MFractors (Xamarin productivity tool) working folder
+.mfractor/
+
+# Local History for Visual Studio
+.localhistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
+>>>>>>> 6a2277f8d7e121e43f473e192515fd401b7842de
