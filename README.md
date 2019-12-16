@@ -1,4 +1,3 @@
-# 32e55a64-gr21-repo
 # MemoryConsoleGame
 
 Game of memory cards, where the player's memorization abilities are put to the test!
