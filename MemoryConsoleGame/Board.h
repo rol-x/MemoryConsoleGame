@@ -5,6 +5,7 @@
 #include <fstream>
 #include <utility>
 #include <ctime>
+#include <map>
 #include <conio.h>
 #include <thread>
 #include "Card.h"
@@ -24,7 +25,7 @@ private:
 	int _boardSize;
 	int _progress;
 	void loadCardsFromFile();
-	bool areDoubles(vector<Card*> cards);
+	bool areCardsDoubled(vector<Card*> cards);
 	void shuffleVector(vector<Card*>& cards);
 	void showProgress();
 	void showClock();

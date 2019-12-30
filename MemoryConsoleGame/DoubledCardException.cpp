@@ -8,7 +8,7 @@ DoubledCardException::DoubledCardException()
 
 const char * DoubledCardException::what() const
 {
-	return "Some of the cards in the file appear more than once!";
+	return "For given board size, some of the cards in the file appear more than once!";
 }
 
 

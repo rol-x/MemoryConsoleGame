@@ -9,6 +9,13 @@ enum GAMEMODE
 	HARD
 };
 
+enum COLOR
+{
+	GREEN,
+	RED,
+	WHITE
+};
+
 class Console
 {
 	HWND console = GetConsoleWindow();
@@ -20,6 +27,7 @@ public:
 	void ShiftCursor(int dx, int dy);
 	void SetCursorPosition(int x, int y);
 	POINT GetCursorPosition();
+	void SetTextColor(COLOR color);
 	void ClearCurrentLine();
 	void RemoveScrollbar();
 	Console();

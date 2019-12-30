@@ -1,6 +1,6 @@
 #include "Board.h"
 
-void Board::loadCardsFromFile() // File doesn't exist exception
+void Board::loadCardsFromFile() // TODO: File doesn't exist exception
 {
 	fstream cardsFile;
 	cardsFile.open("cards.txt", ios::in);
@@ -17,7 +17,7 @@ void Board::loadCardsFromFile() // File doesn't exist exception
 			initialCardsVector.push_back(card);
 			initialCardsVector.push_back(new Card(cardContent));		// We push every card twice and then we shuffle the order
 		}
-		if (areDoubles(initialCardsVector))
+		if (areCardsDoubled(initialCardsVector))
 			throw DoubledCardException();
 
 		for (int i = 0; i < _boardSize; i++)
@@ -40,9 +40,17 @@ void Board::loadCardsFromFile() // File doesn't exist exception
 	}
 }
 
-bool Board::areDoubles(vector<Card*> cards)
+bool Board::areCardsDoubled(vector<Card*> cards)
 {
-	// TODO
+	map<string, int> contentCount;
+	for (int i = 0; i < cards.size(); i++)
+		if (contentCount.find(cards[i]->Content()) == contentCount.end())
+			contentCount[cards[i]->Content()] = 1;
+		else
+			contentCount[cards[i]->Content()]++;
+	for (int i = 0; i < cards.size(); i++)
+		if (contentCount[cards[i]->Content()] > 2)
+			return true;
 	return false;
 }
 
@@ -80,12 +88,12 @@ Board::Board(int boardSize)
 	try
 	{
 		loadCardsFromFile();
+		_progress = 0;
 	}
 	catch (const FileLoadingException&)
 	{
 		throw;
 	}
-	_progress = 0;
 }
 
 void Board::Show()
@@ -102,7 +110,15 @@ void Board::Show()
 		cout << rowIndex++ << "\t";
 		for (auto card : cardRow)
 		{
+			if (CardsRevealed() == 2 && card->IsRevealed())
+			{
+				if (DoRevealedCardsMatch())
+					_console.SetTextColor(COLOR::GREEN);
+				else
+					_console.SetTextColor(COLOR::RED);
+			}
 			cout << card->Show() << "\t\t";
+			_console.SetTextColor(COLOR::WHITE);
 		}
 		cout << endl << endl << endl;
 	}

@@ -16,6 +16,7 @@ Game::Game()
 {
 	srand(time(0));
 	Console().RemoveScrollbar();
+	Console().SetTextColor(COLOR::WHITE);
 	_isGameRunning = true;
 	_isGameFinished = false;
 	ShowMenu();

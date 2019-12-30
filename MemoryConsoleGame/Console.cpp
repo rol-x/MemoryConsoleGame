@@ -46,6 +46,21 @@ POINT Console::GetCursorPosition()
 	return position;
 }
 
+void Console::SetTextColor(COLOR color)
+{
+	switch (color)
+	{
+	case GREEN:
+		SetConsoleTextAttribute(hConsoleOutput, 10);
+		break;
+	case RED:
+		SetConsoleTextAttribute(hConsoleOutput, 12);
+		break;
+	case WHITE:
+		SetConsoleTextAttribute(hConsoleOutput, 15);
+		break;
+	}
+}
 
 void Console::ClearCurrentLine()
 {
