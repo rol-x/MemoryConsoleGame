@@ -1,7 +1,5 @@
 #include "Console.h"
 
-
-
 void Console::SetConsoleSize(GAMEMODE mode)
 {
 	GetWindowRect(console, &ConsoleRect);
@@ -46,6 +44,20 @@ POINT Console::GetCursorPosition()
 	return position;
 }
 
+int Console::GetConsoleWidth()
+{
+	auto startingPosition = GetCursorPosition();
+	SetCursorPosition(0, startingPosition.y);
+	int width = 0;
+	for (int i = 0; GetCursorPosition().y == startingPosition.y; i++)
+	{
+		std::cout << " ";
+		width = i;
+	}
+	SetCursorPosition(startingPosition.x, startingPosition.y);
+	return width;
+}
+
 void Console::SetTextColor(COLOR color)
 {
 	switch (color)
@@ -58,6 +70,9 @@ void Console::SetTextColor(COLOR color)
 		break;
 	case WHITE:
 		SetConsoleTextAttribute(hConsoleOutput, 15);
+		break;
+	case GOLD:
+		SetConsoleTextAttribute(hConsoleOutput, 14);
 		break;
 	}
 }

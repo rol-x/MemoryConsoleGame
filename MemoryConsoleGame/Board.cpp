@@ -68,6 +68,17 @@ void Board::shuffleVector(vector<Card*>& cards)
 	cards = shuffledVector;
 }
 
+void Board::displayErrorAddressMessage(string message)
+{
+	_console.ShiftCursor(0, -3);
+	TextPosition().RightAlignOutput(message);
+	cout << endl;
+	_console.ClearCurrentLine();
+	TextPosition().RightAlignOutput(" ");
+	Console().ShiftCursor(-39, 0);
+	cin.sync();
+}
+
 void Board::showProgress()
 {
 	cout << _progress << "/" << _boardSize * _boardSize / 2 << " pairs found" << endl;
@@ -110,7 +121,7 @@ void Board::Show()
 		cout << rowIndex++ << "\t";
 		for (auto card : cardRow)
 		{
-			if (CardsRevealed() == 2 && card->IsRevealed())
+			if (CardsRevealed() == 2 && card->IsRevealed() && !card->IsOutOfTheGame())
 			{
 				if (DoRevealedCardsMatch())
 					_console.SetTextColor(COLOR::GREEN);
@@ -137,15 +148,15 @@ void Board::ShowWithPause()
 pair<char, int> * Board::GetAddress()
 {
 	string address;
-	cout << "\n\n\n\t\t\t\t\t\t\tWhich card do you want to reveal?\n\t\t\t\t\t\t\t> ";
+	cout << "\n\n";
+	TextPosition().RightAlignOutput("Which card do you want to reveal?       ");
+	Console().ShiftCursor(-39, 1);
+	cout << "> ";
 	cin >> address;
 	pair<char, int> * addressPair;
 	if (address.length() != 2)
 	{
-		_console.ShiftCursor(0, -3);
-		cout << "\t\t\t\t\t\t\tImproper address format!" << endl;
-		_console.ClearCurrentLine();
-		cout << "\t\t\t\t\t\t\t";
+		displayErrorAddressMessage("Improper address format!                ");
 		return nullptr;
 	}
 	
@@ -167,10 +178,7 @@ pair<char, int> * Board::GetAddress()
 		}
 		else
 		{
-			_console.ShiftCursor(0, -3);
-			cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
-			_console.ClearCurrentLine();
-			cout << "\t\t\t\t\t\t\t";
+			displayErrorAddressMessage("Invalid address                         ");
 			return nullptr;
 		}
 	}
@@ -188,19 +196,13 @@ pair<char, int> * Board::GetAddress()
 		}
 		else
 		{
-			_console.ShiftCursor(0, -3);
-			cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
-			_console.ClearCurrentLine();
-			cout << "\t\t\t\t\t\t\t";
+			displayErrorAddressMessage("Invalid address                         ");
 			return nullptr;
 		}
 	}
 	else
 	{
-		_console.ShiftCursor(0, -3);
-		cout << "\t\t\t\t\t\t\tInvalid address!" << endl;
-		_console.ClearCurrentLine();
-		cout << "\t\t\t\t\t\t\t";
+		displayErrorAddressMessage("Invalid address                         ");
 		return nullptr;
 	}
 	return addressPair;
@@ -228,7 +230,7 @@ Card * Board::CardAtAddress(pair<char, int> * address)
 	return card;
 }
 
-void Board::RevealCard(pair<char, int>* address)
+void Board::RevealCard(pair<char, int> * address)
 {
 	if (address == nullptr)
 		system("pause");

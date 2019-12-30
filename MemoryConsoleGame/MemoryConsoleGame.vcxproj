@@ -124,6 +124,7 @@
     <ClCompile Include="FileTooSmallException.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MemoryConsoleGame.cpp" />
+    <ClCompile Include="TextPosition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="FileLoadingException.h" />
     <ClInclude Include="FileTooSmallException.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="TextPosition.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="cards.txt" />

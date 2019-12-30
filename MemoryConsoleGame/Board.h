@@ -1,5 +1,10 @@
 #pragma once
-#include <iostream>
+#include "Card.h"
+#include "TextPosition.h"
+#include "FileTooSmallException.h"
+#include "DoubledCardException.h"
+#include "FileLoadingException.h"
+
 #include <cstdlib>
 #include <vector>
 #include <fstream>
@@ -7,12 +12,6 @@
 #include <ctime>
 #include <map>
 #include <conio.h>
-#include <thread>
-#include "Card.h"
-#include "Console.h"
-#include "FileTooSmallException.h"
-#include "DoubledCardException.h"
-#include "FileLoadingException.h"
 
 using namespace std;
 
@@ -27,6 +26,7 @@ private:
 	void loadCardsFromFile();
 	bool areCardsDoubled(vector<Card*> cards);
 	void shuffleVector(vector<Card*>& cards);
+	void displayErrorAddressMessage(string message);
 	void showProgress();
 	void showClock();
 public:

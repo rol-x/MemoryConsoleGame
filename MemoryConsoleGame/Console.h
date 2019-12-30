@@ -13,7 +13,8 @@ enum COLOR
 {
 	GREEN,
 	RED,
-	WHITE
+	WHITE,
+	GOLD
 };
 
 class Console
@@ -27,6 +28,7 @@ public:
 	void ShiftCursor(int dx, int dy);
 	void SetCursorPosition(int x, int y);
 	POINT GetCursorPosition();
+	int GetConsoleWidth();
 	void SetTextColor(COLOR color);
 	void ClearCurrentLine();
 	void RemoveScrollbar();
