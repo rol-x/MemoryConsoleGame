@@ -6,32 +6,40 @@ void Board::loadCardsFromFile() // TODO: File doesn't exist exception
 	cardsFile.open("cards.txt", ios::in);
 	try
 	{
-		vector<Card*> initialCardsVector;
-		for (int i = 0; i < _boardSize*_boardSize / 2; i++)
+		vector<Card*> allCardsFromFile;
+		while (cardsFile.good())
 		{
-			if (!cardsFile.good())
-				throw FileTooSmallException();
 			string cardContent = "";
 			cardsFile >> cardContent;
 			Card * card = new Card(cardContent);
-			initialCardsVector.push_back(card);
-			initialCardsVector.push_back(new Card(cardContent));		// We push every card twice and then we shuffle the order
+			allCardsFromFile.push_back(card);
 		}
-		if (areCardsDoubled(initialCardsVector))
+		if (areCardsDoubled(allCardsFromFile))
 			throw DoubledCardException();
+		
+		vector<Card*> gameplayCards;
+		for (int i = 0; i < _boardSize*_boardSize / 2; i++)
+		{
+			if (allCardsFromFile.size() == 0)
+				throw FileTooSmallException();
+			int index = rand() % allCardsFromFile.size();
+			auto * card = new Card(allCardsFromFile[index]->Content());
+			gameplayCards.push_back(allCardsFromFile[index]);
+			gameplayCards.push_back(card);
+			allCardsFromFile.erase(allCardsFromFile.begin() + index);
+		}
 
 		for (int i = 0; i < _boardSize; i++)
 		{
 			vector<Card*> _row;
 			for (int j = 0; j < _boardSize; j++)
 			{
-				shuffleVector(initialCardsVector);			// The vector is shuffled and each time the last element is pushed on the board
-				_row.push_back(initialCardsVector.back());
-				initialCardsVector.pop_back();
+				shuffleVector(gameplayCards);			// The vector is shuffled and each time the last element is pushed on the board
+				_row.push_back(gameplayCards.back());
+				gameplayCards.pop_back();
 			}
 			_cards.push_back(_row);
 		}
-
 	}
 	catch (const FileLoadingException& exc)
 	{
@@ -43,13 +51,13 @@ void Board::loadCardsFromFile() // TODO: File doesn't exist exception
 bool Board::areCardsDoubled(vector<Card*> cards)
 {
 	map<string, int> contentCount;
-	for (int i = 0; i < cards.size(); i++)
-		if (contentCount.find(cards[i]->Content()) == contentCount.end())
-			contentCount[cards[i]->Content()] = 1;
+	for (auto card : cards)
+		if (contentCount.find(card->Content()) == contentCount.end())
+			contentCount[card->Content()] = 1;
 		else
-			contentCount[cards[i]->Content()]++;
-	for (int i = 0; i < cards.size(); i++)
-		if (contentCount[cards[i]->Content()] > 2)
+			contentCount[card->Content()]++;
+	for (auto pair : contentCount)
+		if (pair.second > 1)
 			return true;
 	return false;
 }

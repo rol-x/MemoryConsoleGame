@@ -32,6 +32,7 @@ public:
 	void SetTextColor(COLOR color);
 	void ClearCurrentLine();
 	void RemoveScrollbar();
+	void DisableResizing();
 	Console();
 	~Console();
 };

@@ -72,7 +72,7 @@ void Console::SetTextColor(COLOR color)
 		SetConsoleTextAttribute(hConsoleOutput, 15);
 		break;
 	case GOLD:
-		SetConsoleTextAttribute(hConsoleOutput, 14);
+		SetConsoleTextAttribute(hConsoleOutput, 6);
 		break;
 	}
 }
@@ -89,6 +89,11 @@ void Console::ClearCurrentLine()
 void Console::RemoveScrollbar() // TODO: Everywhere
 {
 	ShowScrollBar(console, SB_BOTH, false);
+}
+
+void Console::DisableResizing()
+{
+	SetWindowLong(console, GWL_STYLE, GetWindowLong(console, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
 }
 
 Console::Console()

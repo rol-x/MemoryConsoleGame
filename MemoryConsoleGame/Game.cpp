@@ -10,6 +10,7 @@ void Game::showEndingScreen()
 {
 	Console().SetTextColor(COLOR::GOLD);
 	cout << "You finished the game!" << endl;
+	Console().SetTextColor(COLOR::WHITE);
 	system("pause");
 }
 
@@ -42,18 +43,21 @@ void Game::ShowMenu()
 				_board = new Board(4);
 				Console().SetConsoleSize(GAMEMODE::EASY);
 				showMenu = false;
+				Console().DisableResizing();
 				break;
 			case 'M':
 			case 'm':
 				_board = new Board(6);
 				Console().SetConsoleSize(GAMEMODE::MEDIUM);
 				showMenu = false;
+				Console().DisableResizing();
 				break;
 			case 'H':
 			case 'h':
 				_board = new Board(8);
 				Console().SetConsoleSize(GAMEMODE::HARD);
 				showMenu = false;
+				Console().DisableResizing();
 				break;
 			case 'Q':
 			case 'q':
