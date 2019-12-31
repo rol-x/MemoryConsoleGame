@@ -1,11 +1,13 @@
 #include "Board.h"
 
-void Board::loadCardsFromFile() // TODO: File doesn't exist exception
+void Board::loadCardsFromFile()
 {
 	fstream cardsFile;
 	cardsFile.open("cards.txt", ios::in);
 	try
 	{
+		if (!cardsFile.good())
+			throw FileDoesntExistException();
 		vector<Card*> allCardsFromFile;
 		while (cardsFile.good())
 		{

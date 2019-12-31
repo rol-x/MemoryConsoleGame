@@ -120,6 +120,7 @@
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="DoubledCardException.cpp" />
+    <ClCompile Include="FileDoesntExistException.cpp" />
     <ClCompile Include="FileLoadingException.cpp" />
     <ClCompile Include="FileTooSmallException.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="DoubledCardException.h" />
+    <ClInclude Include="FileDoesntExistException.h" />
     <ClInclude Include="FileLoadingException.h" />
     <ClInclude Include="FileTooSmallException.h" />
     <ClInclude Include="Game.h" />

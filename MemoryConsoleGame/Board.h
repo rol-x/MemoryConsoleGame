@@ -3,7 +3,7 @@
 #include "TextPosition.h"
 #include "FileTooSmallException.h"
 #include "DoubledCardException.h"
-#include "FileLoadingException.h"
+#include "FileDoesntExistException.h"
 
 #include <cstdlib>
 #include <vector>
@@ -11,7 +11,6 @@
 #include <utility>
 #include <ctime>
 #include <map>
-#include <conio.h>
 
 using namespace std;
 
